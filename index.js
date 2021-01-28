@@ -41,7 +41,7 @@ const questions = [
   },
   {
     name: "installation",
-    type: "editor",
+    type: "input",
     message: "Enter installation instructions (if applicable):"
   },
   {
@@ -69,12 +69,20 @@ const questions = [
   }
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, err => {
+    if (err) new Error(err);
+    console.log("README successfully created!");
+  });
+}
 
-// TODO: Create a function to initialize app
+
 function init() {
-
+  inquirer.prompt(questions)
+    .then(answers => {
+      writeToFile("test.md", generateMarkdown(answers))
+    })
+    .catch(err => console.log(err));
 }
 
 // Function call to initialize app
