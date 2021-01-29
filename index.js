@@ -11,7 +11,7 @@ const questions = [
   },
   {
     name: "name",
-    type: "input",
+    type: "editor",
     message: "Name:"
   },
   {
