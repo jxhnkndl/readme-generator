@@ -4,38 +4,20 @@ const outdent = require("outdent");
 
 // Generate a badge using the user's chosen license and color
 function renderLicenseBadge(rawLicense, color) {
-  const license = rawLicense.replace(" ", "+");
+  const license = rawLicense.split(" ").join("+");
   const badge = `https://img.shields.io/static/v1?label=license&message=${license}&color=${color}`;
 
-  if (license && color) {
-    return badge;
-
-  } else if (license && !color) {
-    color = "blue";
-    return badge;
-
-  } else if (!license) {
-    return "";
-  }
+  if (license && color) return badge;
+  else return "";
 }
 
 // Find the documentation URL for the selected license
 function renderLicenseLink(license) {
-  const links = [
-    { license: "MIT", link: "https://opensource.org/licenses/MIT" },
-    { license: "Apache 2.0", link: "https://opensource.org/licenses/Apache-2.0" },
-    { license: "GPL v3", link: "https://www.gnu.org/licenses/gpl-3.0" },
-    { license: "GPL v2", link: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" },
-    { license: "BSD 3", link: "https://opensource.org/licenses/BSD-3-Clause" },
-  ];
+  const queryString = license.split(" ").join("-");
+  const url = `https://opensource.org/licenses/${queryString}`;
 
-  const licenseMatch = links.find((link) => link.license === license);
-
-  if (licenseMatch) {
-    return licenseMatch.link;
-  } else {
-    return "";
-  }
+  if (license) return url;
+  else return "";
 }
 
 // Generate formatted markdown file
@@ -75,7 +57,7 @@ const generateMarkdown = (data) => {
   ${data.usage}
   
   ## License
-  Copyright (c) 2021 ${data.name}
+  Copyright (c) 2021 ${data.name}  
   Licensed under the [${data.license} license](${link}).
   
   ## Contributing

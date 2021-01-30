@@ -77,7 +77,7 @@ const questions = [
   {
     name: "license",
     type: "list",
-    choices: ["MIT", "Apache 2.0", "GPL v3", "GPL v2", "BSD 3"],
+    choices: ["MIT", "Apache 2.0", "GPL 3.0", "GPL 2.0", "BSD 3 Clause"],
     message: "Select a license for your application:"
   },
   {
