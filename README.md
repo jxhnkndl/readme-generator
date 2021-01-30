@@ -24,7 +24,7 @@ This application partially automates the process of generating README documentat
 * Command Line
 
 ## Installation
-Before proceeding, verify that Node.js and npm are installed on your device. If you aren't sure if Node.js or npm are already installed, open a terminal and run:
+Before proceeding, verify that Node.js and npm are installed on your device. To check whether Node.js and npm are installed, open a terminal and run:
 ```
 node -v
 ```
@@ -37,23 +37,24 @@ The README Generator also requires the Inquirer.js module. To install Inquirer f
 ```
 npm install
 ```
-Once Node.js, Inquirer.js, and their dependencies have been installed, the application is ready to use.
+Once Inquirer.js and its dependencies have been installed, the application is ready to use.
 
 ## Usage
 To launch the application from the command line, navigate to the project's root directory and run:
 ```
 node index.js
 ```
-Questions that may require code blocks or more details responses will prompt the user to open their default text editor:
+Questions that may require code blocks, markdown, or more details responses will prompt the user to open their default text editor. These questions will prompt the user to press "enter" to open their operating system's default text editor:
 * **Windows Users:** The application will open Notepad.
-* **Mac/Linux Users:** The application will open Vim. Once Vim is open, press "i" to begin typing. Once you are finished, press "esc" to complete the input followed by ":wq" to save and close the editor. 
+* **Mac/Linux Users:** The application will open Vim. Once Vim is open, press "i" to begin typing. Once finished, press "esc" to complete the input followed by ":wq" to save and close the editor. 
 
 ## Video Walkthrough
 The following video documents the entire user story from application launch through generation of a professionally formatted README. Use this video to supplement the documentation above:  
 
-![Application Preview](assets/readme-generator-demo.gif)
+[![Application Preview](assets/readme-generator-demo.gif)](https://drive.google.com/file/d/1etho5UZRIpRxv737bAu4iUli7TLAbhLT/view)
 
 ## License
+Copyright (c) 2021 J.K. Royston  
 Licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Contact
