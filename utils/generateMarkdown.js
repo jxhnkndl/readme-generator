@@ -1,6 +1,11 @@
 
-function renderLicenseBadge(license, color) {
-  const badge = `https://img.shields.io/static/v1?style=plastic&label=license&message=${license}&color=${color}`;
+// Require in third-party module
+const outdent = require("outdent");
+
+// Generate a badge using the user's chosen license and color
+function renderLicenseBadge(rawLicense, color) {
+  const license = rawLicense.replace(" ", "+");
+  const badge = `https://img.shields.io/static/v1?label=license&message=${license}&color=${color}`;
 
   if (license && color) {
     return badge;
@@ -14,53 +19,41 @@ function renderLicenseBadge(license, color) {
   }
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// Find the documentation URL for the selected license
 function renderLicenseLink(license) {
   const links = [
-    { 
-      license: "MIT", 
-      link: "https://opensource.org/licenses/MIT" 
-    },
-    { 
-      license: "Apache 2.0", 
-      link: "https://opensource.org/licenses/Apache-2.0" 
-    },
-    { 
-      license: "GPL v3", 
-      link: "https://www.gnu.org/licenses/gpl-3.0" 
-    },
-    { 
-      license: "GPL v2", 
-      link: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" 
-    },
-    { 
-      license: "BSD 3", 
-      link: "https://opensource.org/licenses/BSD-3-Clause" 
-    }
+    { license: "MIT", link: "https://opensource.org/licenses/MIT" },
+    { license: "Apache 2.0", link: "https://opensource.org/licenses/Apache-2.0" },
+    { license: "GPL v3", link: "https://www.gnu.org/licenses/gpl-3.0" },
+    { license: "GPL v2", link: "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" },
+    { license: "BSD 3", link: "https://opensource.org/licenses/BSD-3-Clause" },
   ];
 
-  const licenseMatch = links.find(link => link.license === license);
-  return licenseMatch.link;
+  const licenseMatch = links.find((link) => link.license === license);
+
+  if (licenseMatch) {
+    return licenseMatch.link;
+  } else {
+    return "";
+  }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
-
-// Generate markdown file
+// Generate formatted markdown file
 const generateMarkdown = (data) => {
   const license = data.license;
   const color = data.badgeColor;
+
   const badge = renderLicenseBadge(license, color);
   const link = renderLicenseLink(license);
 
-  console.log(badge);
-  console.log(link);
+  // Note: The third-party outdent module is being used 
+  // to strip out the leading whitespace from the beginning
+  // of each line to ensure the README is cleanly formatted
 
-  return `# ${data.title}
+  return outdent`
+  # ${data.title}
 
-  ![license](https://img.shields.io/static/v1?label=license&message=MIT&color=blue&style=flat-square)
+  [![license](${badge})](${link})
   
   ## Table of Contents
   
@@ -82,8 +75,8 @@ const generateMarkdown = (data) => {
   ${data.usage}
   
   ## License
-  Copyright (c) 2021 ${data.name}  
-  Licensed under the ${data.license} license
+  Copyright (c) 2021 ${data.name}
+  Licensed under the [${data.license} license](${link}).
   
   ## Contributing
   ${data.contributing}

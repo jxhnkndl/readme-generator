@@ -34,22 +34,21 @@ const questions = [
     type: "input",
     message: `Name:`
   },
-  {
-    name: "email",
-    type: "input",
-    message: `Email Address:`
-  },
-  {
-    name: "github",
-    type: "input",
-    message: `GitHub Username:`
-  },
-
-  {
-    name: "title",
-    type: "input",
-    message: `Application Title:`
-  },
+  // {
+  //   name: "email",
+  //   type: "input",
+  //   message: `Email Address:`
+  // },
+  // {
+  //   name: "github",
+  //   type: "input",
+  //   message: `GitHub Username:`
+  // },
+  // {
+  //   name: "title",
+  //   type: "input",
+  //   message: `Application Title:`
+  // },
   // {
   //   name: "description",
   //   type: "editor",
@@ -78,7 +77,7 @@ const questions = [
   {
     name: "license",
     type: "list",
-    choices: ["MIT", "Apache 2.0", "GPL v3", "GPL v2", "BSD 3", "No License"],
+    choices: ["MIT", "Apache 2.0", "GPL v3", "GPL v2", "BSD 3"],
     message: "Select a license for your application:"
   },
   {

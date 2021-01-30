@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jxhnkndl/readme-generator#readme",
   "dependencies": {
-    "inquirer": "^7.3.3"
+    "inquirer": "^7.3.3",
+    "outdent": "^0.8.0"
   }
 }
