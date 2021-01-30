@@ -52,7 +52,8 @@ const questions = [
   {
     name: "description",
     type: "editor",
-    message: `Describe the application:`
+    message: `Describe the application:
+    (Markdown is supported in the editor)`
   },
   {
     name: "tech",
@@ -62,23 +63,27 @@ const questions = [
   },
   {
     name: "installation",
-    type: "input",
-    message: `How would a user install the application?`
+    type: "editor",
+    message: `How would a user install the application?
+    (Markdown is supported in the editor):`
   },
   {
     name: "usage",
     type: "editor",
-    message: `Please provide instructions for how to use the application:`
+    message: `Please provide instructions for how to use the application:
+    (Markdown is supported in the editor)`
   },
   {
     name: "contributing",
     type: "editor",
-    message: `What are the guidelines for contributions to the project?`
+    message: `What are the guidelines for contributions to the project?
+    (Markdown is supported in the editor)`
   },
   {
     name: "tests",
     type: "editor",
-    message: `Please provide information about testing suites and environments:`
+    message: `Describe the application's testing suites:
+    (Markdown is supported in the editor)`
   },
   {
     name: "license",
@@ -94,7 +99,7 @@ const questions = [
   }
 ];
 
-// Take the formatted answers and write them into a new or existing file
+// Write formatted answers into a new file
 function writeToFile(fileName, data) {
   fs.writeFile(fileName, data, err => {
     if (err) new Error(err);
@@ -103,7 +108,7 @@ function writeToFile(fileName, data) {
 }
 
 // Init application and begin the command line prompts
-// When answers are returned, use them to generate and write the markdown file
+// Generate and write the markdown file with the user's answers
 function init() {
   inquirer.prompt(questions)
     .then(answers => {
@@ -112,5 +117,5 @@ function init() {
     .catch(err => console.log(err));
 }
 
-// Function call to initialize app
+// Initialize app
 init();

@@ -30,7 +30,8 @@ const generateMarkdown = (data) => {
 
   // Note: The third-party outdent module is being used 
   // to strip out the leading whitespace from the beginning
-  // of each line to ensure the README is cleanly formatted
+  // of each new line in the template literal to ensure 
+  // the README is cleanly formatted.
 
   return outdent`
   # ${data.title}
