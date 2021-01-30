@@ -40,6 +40,7 @@ const generateMarkdown = (data) => {
   ## Table of Contents
   
   * [Description](#description)
+  * [Technologies](#technologies)
   * [Installation](#installation)
   * [Usage](#usage)
   * [License](#license)
@@ -47,9 +48,12 @@ const generateMarkdown = (data) => {
   * [Tests](#tests)
   * [Questions](#questions)
   
-  # Description
+  ## Description
   ${data.description}
   
+  ## Technologies
+  ${data.tech.join(", ")}
+
   ## Installation
   ${data.installation}
   

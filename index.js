@@ -34,46 +34,52 @@ const questions = [
     type: "input",
     message: `Name:`
   },
-  // {
-  //   name: "email",
-  //   type: "input",
-  //   message: `Email Address:`
-  // },
-  // {
-  //   name: "github",
-  //   type: "input",
-  //   message: `GitHub Username:`
-  // },
-  // {
-  //   name: "title",
-  //   type: "input",
-  //   message: `Application Title:`
-  // },
-  // {
-  //   name: "description",
-  //   type: "editor",
-  //   message: `Describe the application:`
-  // },
-  // {
-  //   name: "installation",
-  //   type: "input",
-  //   message: `How would a user install the application?`
-  // },
-  // {
-  //   name: "usage",
-  //   type: "editor",
-  //   message: `Please provide instructions for how to use the application:`
-  // },
-  // {
-  //   name: "contributing",
-  //   type: "editor",
-  //   message: `What are the guidelines for contributions to the project?`
-  // },
-  // {
-  //   name: "tests",
-  //   type: "editor",
-  //   message: `Please provide information about testing suites and environments:`
-  // },
+  {
+    name: "email",
+    type: "input",
+    message: `Email Address:`
+  },
+  {
+    name: "github",
+    type: "input",
+    message: `GitHub Username:`
+  },
+  {
+    name: "title",
+    type: "input",
+    message: `Application Title:`
+  },
+  {
+    name: "description",
+    type: "editor",
+    message: `Describe the application:`
+  },
+  {
+    name: "tech",
+    type: "checkbox",
+    choices: ["HTML", "CSS", "Bootstrap 4", "JavaScript", "jQuery", "React.js", "Node.js", "Express", "MySQL", "MongoDb"],
+    message: "Select all technologies used in building the application:"
+  },
+  {
+    name: "installation",
+    type: "input",
+    message: `How would a user install the application?`
+  },
+  {
+    name: "usage",
+    type: "editor",
+    message: `Please provide instructions for how to use the application:`
+  },
+  {
+    name: "contributing",
+    type: "editor",
+    message: `What are the guidelines for contributions to the project?`
+  },
+  {
+    name: "tests",
+    type: "editor",
+    message: `Please provide information about testing suites and environments:`
+  },
   {
     name: "license",
     type: "list",
