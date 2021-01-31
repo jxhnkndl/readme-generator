@@ -88,14 +88,15 @@ const questions = [
   {
     name: "license",
     type: "list",
-    choices: ["MIT", "Apache 2.0", "GPL 3.0", "GPL 2.0", "BSD 3 Clause"],
+    choices: ["MIT", "Apache 2.0", "GPL 3.0", "GPL 2.0", "BSD 3 Clause", "None"],
     message: "Select a license for your application:"
   },
   {
     name: "badgeColor",
     type: "list",
     choices: ["brightgreen", "yellow", "red", "blue", "orange", "lightgray", "blueviolet"],
-    message: "Select a color for your license badge:"
+    message: "Select a color for your license badge:",
+    when: answers => answers.license !== "None"
   }
 ];
 
@@ -112,7 +113,7 @@ function writeToFile(fileName, data) {
 function init() {
   inquirer.prompt(questions)
     .then(answers => {
-      writeToFile("README.md", generateMarkdown(answers));
+      writeToFile("TEST-README.md", generateMarkdown(answers));
     })
     .catch(err => console.log(err));
 }

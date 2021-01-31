@@ -3,30 +3,54 @@
 const outdent = require("outdent");
 
 // Generate a badge using the user's chosen license and color
-function renderLicenseBadge(rawLicense, color) {
-  const license = rawLicense.split(" ").join("+");
-  const badge = `https://img.shields.io/static/v1?label=license&message=${license}&color=${color}`;
+function renderLicenseBadge(license, color) {
+  if (license === "None") {
+    return "";
 
-  if (license && color) return badge;
-  else return "";
+  } else {
+    const formatLicense = license.split(" ").join("+");
+    const badge = `https://img.shields.io/static/v1?label=license&message=${formatLicense}&color=${color}`;
+    return badge;
+  }
 }
 
 // Find the documentation URL for the selected license
 function renderLicenseLink(license) {
-  const queryString = license.split(" ").join("-");
-  const url = `https://opensource.org/licenses/${queryString}`;
+  if (license === "None") {
+    return "";
 
-  if (license) return url;
-  else return "";
+  } else {
+    const queryString = license.split(" ").join("-");
+    return `https://opensource.org/licenses/${queryString}`;
+  }
+}
+
+// Generate license section markup 
+function renderLicenseSection(license, link, name) {
+  if (license === "None") {
+    return "No license information available."
+
+  } else {
+    return outdent`
+      Copyright (c) 2021 ${name}  
+      Licensed under the [${license} license](${link}).
+    `;
+  }
 }
 
 // Generate formatted markdown file
 const generateMarkdown = (data) => {
-  const license = data.license;
-  const color = data.badgeColor;
+  const { name, license, badgeColor: color } = data;
 
   const badge = renderLicenseBadge(license, color);
   const link = renderLicenseLink(license);
+  const licenseMarkup = renderLicenseSection(license, link, name);
+  const licenseBadge = `[![license](${badge})](${link})`;
+
+  let optionalBadge;
+
+  if (data.license === "None") optionalBadge = "";
+  else optionalBadge = licenseBadge;
 
   // Note: The third-party outdent module is being used 
   // to strip out the leading whitespace from the beginning
@@ -36,7 +60,7 @@ const generateMarkdown = (data) => {
   return outdent`
   # ${data.title}
 
-  [![license](${badge})](${link})
+  ${optionalBadge}
   
   ## Table of Contents
   
@@ -62,8 +86,7 @@ const generateMarkdown = (data) => {
   ${data.usage}
   
   ## License
-  Copyright (c) 2021 ${data.name}  
-  Licensed under the [${data.license} license](${link}).
+  ${licenseMarkup}
   
   ## Contributing
   ${data.contributing}
